@@ -1,3 +1,11 @@
+/*
+ * TDD演练：四则运算，添加幂乘
+ * 代码演练过程：http://blog.csdn.net/fzy0201/article/details/39532891
+ *
+ * Author: BigFun
+ * Date  : 2014/12/21
+ */
+
 
 typedef struct 
 {
@@ -44,6 +52,11 @@ int parse_bracket_num(context &ctx)
 	return Result;
 }
 
+bool is_pow(context &ctx)  
+{  
+    return ctx.str[ctx.pos] == '^' ；  
+} 
+
 bool is_mul_or_div(context &ctx)
 {
 	return ctx.str[ctx.pos] == '*' || ctx.str[ctx.pos] == '/';
@@ -74,6 +87,14 @@ int calc(int left, char opt, int right)
 	{
 		Result = left / right;
 	}
+	else if (opt == '^')                 // 幂乘扩展的代码  
+    {  
+		Result = left;
+        for (int i = 1; i < right; i++)  
+        {  
+            Result *=  left;  
+        }  
+    }  
 
 	return Result;
 }
@@ -92,11 +113,14 @@ int oper(context &ctx, HIGH_OPER pHighOper, IS_LOW_OPT pIsLowOpt)
 	return Result;
 }
 
-
+int pow(context &ctx)  
+{  
+    return oper(ctx, parse_bracket_num, is_pow);  
+}
 
 int mul_div(context &ctx)
 {
-	return oper(ctx, parse_bracket_num, is_mul_or_div);
+	return oper(ctx, pow, is_mul_or_div); 
 }
 
 int add_sub(context &ctx)
@@ -112,9 +136,12 @@ int expr(const char *str)
 	{
 		return -1;
 	}
+	
 	return Result;
 }
 
+/*
+ * 演练添加括号运算遗留代码
 int expr_bracket_addsub(const char *str)
 {
 	context ctx = {str, 0};
@@ -148,3 +175,4 @@ int expr_bracket_muldiv(const char *str)
 
 	return Result;
 }
+*/
