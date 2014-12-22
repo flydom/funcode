@@ -5,7 +5,6 @@
  * Author: BigFun
  * Date  : 2014/12/22
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
