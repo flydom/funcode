@@ -6,7 +6,6 @@
  * Date  : 2014/12/21
  */
 
-
 typedef struct 
 {
 	const char *str;
