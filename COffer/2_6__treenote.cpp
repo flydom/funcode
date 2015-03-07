@@ -49,7 +49,7 @@ void BTree_UnRecPreOrder(BTreeNode *pRoot) // 非递归
 {
 	std::stack <BTreeNode *> nodes;
 	
-	while (!nodes.empty())
+	while (NULL != pRoot || !nodes.empty())
 	{
 		if (NULL != pRoot)
 		{
@@ -81,7 +81,7 @@ void BTree_UnRecInOrder(BTreeNode *pRoot) // 非递归
 {
 	std::stack <BTreeNode *> nodes;
 	
-	while (!nodes.empty())
+	while (NULL != pRoot || !nodes.empty())
 	{
 		if (NULL != pRoot)
 		{
