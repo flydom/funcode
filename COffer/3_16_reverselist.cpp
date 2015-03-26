@@ -33,3 +33,13 @@ ListNode* ReverseCore(ListNode* pPrev, ListNode* pCurr, ListNode* pNext)
 
     return ReverseCore(pCurr, pNext, pNext->m_pNext);
 }
+
+ListNode* ReverseList(ListNode* pHead)
+{
+    if (pHead== NULL)
+    {
+        return NULL;
+    }
+
+    return ReverseCore(NULL, pHead, pHead->m_pNext);
+}
