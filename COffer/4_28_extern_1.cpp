@@ -1,5 +1,6 @@
 // 正方体三对面定点和是否相等
 
+
 void swap(int *a, int *b)
 {
     int temp = *a;
@@ -7,27 +8,33 @@ void swap(int *a, int *b)
     *b = temp;
 }
 
+bool Func_Square(int *array, int length)
+{
+    bool result = false;
 
-bool EqualCore(int array[8], int length, int index)
+    if ((array[0]+array[1]+array[2]+array[3] == array[4]+array[5]+array[6]+array[7]) &&
+        (array[0]+array[2]+array[4]+array[6] == array[1]+array[3]+array[5]+array[7]) &&
+        (array[0]+array[1]+array[4]+array[5] == array[2]+array[3]+array[6]+array[7]))
+    {
+        for (int j = 0; j < 8; j++)
+        {
+            printf("%d\t", array[j]);
+        }
+        printf("\n");
+        
+        result = true;
+    }
+
+    return result;
+}
+
+bool EqualCore(int *array, int length, int index)
 {
     bool result = false;
     if (index >= 8)
     {
         // TODO: 判断
-        if ((array[0]+array[1]+array[2]+array[3] == array[4]+array[5]+array[6]+array[7]) &&
-            (array[0]+array[2]+array[4]+array[6] == array[1]+array[3]+array[5]+array[7]) &&
-            (array[0]+array[1]+array[4]+array[5] == array[2]+array[3]+array[6]+array[7]))
-        {
-            for (int j = 0; j < 8; j++)
-            {
-                printf("%d\t", array[j]);
-            }
-            printf("\n");
-            
-            result = true;
-        }
-
-        return result;
+        return Func_Square(array, length);
     }
     
     for (int i = index; i < length; i++)
@@ -84,7 +91,7 @@ void Test(char *test, int *array, int length)
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-    int array1[8] = {1, 2, 3, 4, 5, 6, 7, 8};
+    int array1[8] = {0, 1, 2, 3, 4, 5, 6, 7};
     Test("test1", array1, 8);
 
     int array2[8] = {1, 1, 1, 1, 1, 1, 1, 1};
